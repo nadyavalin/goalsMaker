@@ -22,7 +22,11 @@ goalInput.classList.add("input__item");
 goalInput.placeholder = "Задача";
 goalInput.type = "text";
 
-const createGoalButton = createButton(["button", "btn__main"], "Создать задачу");
+const createGoalButton = createButton(
+  "goal",
+  ["button", "btn__main"],
+  "Создать задачу"
+);
 
 const goalsContainer = document.createElement("div");
 goalsContainer.classList.add("container__goals");
@@ -52,37 +56,70 @@ function createGoalElement(text) {
   textSpan.textContent = text;
 
   const doneButton = createButton("done", ["button", "btn__goal"], "Выполнено");
-  const changeButton = createButton("change", ["button", "btn__change"], "Изменить");
-  const deleteButton = createButton("delete", ["button", "btn__change"], "Удалить");
+  const changeButton = createButton(
+    "change",
+    ["button", "btn__change"],
+    "Изменить"
+  );
+  const deleteButton = createButton(
+    "delete",
+    ["button", "btn__delete"],
+    "Удалить"
+  );
 
-  goalsContainer.append(goalItem);
   goalItem.append(textSpan);
   goalItem.append(doneButton);
   goalItem.append(changeButton);
   goalItem.append(deleteButton);
 
-  container.addEventListener("click", function (event) {
-    const { type } = event.target.dataset;
-    if (type === "done") {
-      goalItem.classList.add("goal__item_done");
-      doneButton.classList.add("hidden");
-      changeButton.classList.add("hidden");
-      saveGoals(); // Сохранить обновленный массив целей в localStorage
-    }
-
-    if (type === "change") {
-      // eslint-disable-next-line no-alert
-      const newName = prompt("Переименуйте задачу", textSpan.textContent);
-      textSpan.textContent = newName;
-      saveGoals(); // Сохранить обновленный массив целей в localStorage
-    }
-
-    if (type === "delete") {
-      goalItem.remove();
-      saveGoals(); // Сохранить обновленный массив целей в localStorage
-    }
-  });
+  goalsContainer.append(goalItem);
 }
+
+function isDone(event) {
+  const goalItem = event.target.parentElement;
+  goalItem.classList.add("goal__item_done");
+
+  const doneButton = event.target;
+  doneButton.classList.add(["hidden"]);
+
+  const changeButton = event.target;
+  changeButton.classList.add(["hidden"]);
+
+  saveGoals(); // Сохранить обновленный массив целей в localStorage
+}
+
+function isChange(event) {
+  const goalItem = event.target.parentElement;
+  const textSpan = goalItem.querySelector("span");
+
+  const newName = prompt("Переименуйте задачу", textSpan.textContent);
+  if (newName) {
+    textSpan.textContent = newName;
+    saveGoals(); // Сохранить обновленный массив целей в localStorage
+  }
+}
+
+function isDelete(event) {
+  const goalItem = event.target.parentElement;
+  goalItem.remove();
+  saveGoals(); // Сохранить обновленный массив целей в localStorage
+}
+
+container.addEventListener("click", (event) => {
+  const { type } = event.target.dataset;
+
+  if (type === "done") {
+    isDone(event);
+  }
+
+  if (type === "change") {
+    isChange(event);
+  }
+
+  if (type === "delete") {
+    isDelete(event);
+  }
+});
 
 // Отобразить ранее сохраненные цели
 goals.forEach((goal) => {

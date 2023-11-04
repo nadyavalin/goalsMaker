@@ -86,7 +86,7 @@ ul {
     background-color: rgb(10, 119, 16);
 }
 
-.btn__change {
+.btn__change, .btn__delete {
     background-color: rgba(100, 95, 92, 0.789);
     width: 100%;
 }
