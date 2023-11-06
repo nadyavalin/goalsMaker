@@ -75,23 +75,26 @@ function createGoalElement(text) {
   goalsContainer.append(goalItem);
 }
 
-function isDone(event) {
+function pressDoneBtn(event) {
   const goalItem = event.target.parentElement;
   goalItem.classList.add("goal__item_done");
 
   const doneButton = event.target;
   doneButton.classList.add(["hidden"]);
-
-  const changeButton = event.target;
+  
+  const changeButton = event.target.nextSibling;
   changeButton.classList.add(["hidden"]);
 
   saveGoals(); // Сохранить обновленный массив целей в localStorage
 }
 
-function isChange(event) {
-  const goalItem = event.target.parentElement;
-  const textSpan = goalItem.querySelector("span");
+// console.log(pressDoneBtn(event));
 
+function pressChangeBtn(event) {
+  const goalItem = event.target.parentElement;
+  const textSpan = goalItem.firstChild;
+
+  // eslint-disable-next-line no-alert
   const newName = prompt("Переименуйте задачу", textSpan.textContent);
   if (newName) {
     textSpan.textContent = newName;
@@ -99,25 +102,25 @@ function isChange(event) {
   }
 }
 
-function isDelete(event) {
+function pressDeleteBtn(event) {
   const goalItem = event.target.parentElement;
   goalItem.remove();
   saveGoals(); // Сохранить обновленный массив целей в localStorage
 }
 
-container.addEventListener("click", (event) => {
+goalsContainer.addEventListener("click", (event) => {
   const { type } = event.target.dataset;
 
   if (type === "done") {
-    isDone(event);
+    pressDoneBtn(event);
   }
 
   if (type === "change") {
-    isChange(event);
+    pressChangeBtn(event);
   }
 
   if (type === "delete") {
-    isDelete(event);
+    pressDeleteBtn(event);
   }
 });
 

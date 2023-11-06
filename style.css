@@ -91,11 +91,11 @@ ul {
     width: 100%;
 }
 
-.btn__change:hover {
+.btn__change:hover, .btn__delete:hover {
     background-color: rgba(75, 66, 61, 0.789);
 }
 
-.btn__change:active {
+.btn__change:active, .btn__delete:active {
     background-color: rgba(39, 33, 29, 0.789);
 }
 
