@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(189, 223, 192);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    color: rgb(15, 14, 14);
+}
+
+.input__item {
+    background-color: rgb(241, 246, 240);
+    width: 400px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 20px;
+    box-shadow: 10px 5px 5px rgba(29, 28, 28, 0.1);
+}
+
+.container__goals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.goal__item {
+    background-color: rgb(241, 246, 240);
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 20%;
+    width: 20%;
+    box-shadow: 10px 5px 5px rgba(29, 28, 28, 0.1);
+}
+
+.goal__item_done {
+    background-color: rgb(34, 221, 62);
+}
+
+.button {
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    padding: 10px 15px;
+}
+
+.btn__main {
+    background-color: rgb(226, 92, 15);
+    box-shadow: 10px 5px 5px rgba(29, 28, 28, 0.1);
+}
+
+.btn__goal {
+    background-color: rgb(13, 197, 22);
+    width: 100%;
+}
+
+.btn__goal:hover {
+    background-color: rgb(10, 159, 17);
+}
+
+.btn__goal:active {
+    background-color: rgb(10, 119, 16);
+}
+
+.btn__change, .btn__delete {
+    background-color: rgba(100, 95, 92, 0.789);
+    width: 100%;
+}
+
+.btn__change:hover, .btn__delete:hover {
+    background-color: rgba(75, 66, 61, 0.789);
+}
+
+.btn__change:active, .btn__delete:active {
+    background-color: rgba(39, 33, 29, 0.789);
+}
+
+.hidden {
+    visibility: hidden;
+}
